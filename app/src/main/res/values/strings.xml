@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WohnJagd</string>
+
+    <!-- Navigation labels -->
+    <string name="nav_feed">Feed</string>
+    <string name="nav_map">Karte</string>
+    <string name="nav_tracker">Tracker</string>
+    <string name="nav_profile">Profil</string>
+    <string name="nav_settings">Einstellungen</string>
+</resources>
