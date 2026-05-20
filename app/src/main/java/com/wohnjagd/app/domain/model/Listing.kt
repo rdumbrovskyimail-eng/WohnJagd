@@ -26,6 +26,7 @@ data class Listing(
 
     val price: ListingPrice,
     val geometry: ListingGeometry,
+    val features: ListingFeatures,
     val location: Address,
 
     val contactId: ContactId? = null,
