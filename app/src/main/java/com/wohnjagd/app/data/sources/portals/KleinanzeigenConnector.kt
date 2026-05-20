@@ -172,11 +172,9 @@ class KleinanzeigenConnector @Inject constructor(
 
     private fun parsePriceCents(text: String?): Long? {
         if (text.isNullOrBlank()) return null
-        if (text.contains("VB", ignoreCase = true) && text.replace(Regex("[^0-9]"), "").isEmpty()) {
-            return null
-        }
-        val numeric = text.replace(Regex("[^0-9]"), "")
-        val euros = numeric.toLongOrNull() ?: return null
+        val digitsOnly = text.filter { it.isDigit() }
+        if (digitsOnly.isEmpty()) return null
+        val euros = digitsOnly.toLongOrNull() ?: return null
         if (euros <= 0L) return null
         return euros * 100L
     }
@@ -206,8 +204,8 @@ class KleinanzeigenConnector @Inject constructor(
         private const val BASE_URL = "https://www.kleinanzeigen.de"
         private const val SEARCH_URL = "$BASE_URL/s-mietwohnung-rhein-sieg-kreis/k0"
 
-        private val LOCATION_REGEX = Regex("^(\d{5})\s+(.+)$")
-        private val SIZE_REGEX = Regex("(\d+(?:[.,]\d+)?)\s*m²")
-        private val ROOMS_REGEX = Regex("(\d+(?:[.,]\d+)?)\s*Zi")
+        private val LOCATION_REGEX = Regex("""^(\d{5})\s+(.+)$""")
+        private val SIZE_REGEX = Regex("""(\d+(?:[.,]\d+)?)\s*m²""")
+        private val ROOMS_REGEX = Regex("""(\d+(?:[.,]\d+)?)\s*Zi""")
     }
 }
